@@ -1,2 +1,5 @@
-# solo-leveling
-Solo Leveling — Complete 201 Chapters (7,224 Real Manhwa Pages) Dedicated Storage Repository
+# Solo Leveling — Dedicated Chapter Repository
+
+- **Total Chapters**: 201 (Prologue Chapter 0 through Chapter 200)
+- **Total Real Manhwa Pages Indexed**: 7,224 pages
+- **Manifest**: `manifest.json` + individual `chapters/chapter_XXX.json`
