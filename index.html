@@ -403,7 +403,7 @@
             border-radius: 4px;
         }
 
-        /* Reader View Overlay */
+        /* Fullscreen Chapter Reader (Overview removed per request) */
         .reader-view {
             display: none;
             position: fixed;
@@ -638,12 +638,11 @@
         </div>
     </main>
 
-    <!-- Fullscreen Chapter Reader -->
+    <!-- Fullscreen Chapter Reader (Overview button removed per request) -->
     <div class="reader-view" id="readerView">
         <div class="reader-header">
             <div class="reader-left">
-                <a href="https://aixcard.github.io/Manga/" class="nav-btn" style="text-decoration:none;" title="Portal Home">⌂ Kuro Manga</a>
-                <button class="nav-btn" onclick="closeReader()" title="Back to Overview">✕ Overview</button>
+                <a href="https://aixcard.github.io/Manga/" class="nav-btn" style="text-decoration:none;" title="Return to Portal">⌂ Kuro Manga</a>
                 <div class="reader-title" id="readerTitle">Solo Leveling</div>
             </div>
             <div class="reader-nav">
@@ -656,9 +655,9 @@
         <div class="pages-container">
             <div id="pagesList"></div>
             <div class="bottom-nav-wrap">
-                <button class="nav-btn" id="prevBtnBottom" onclick="navigateChapter(-1)" style="padding:10px 20px;">‹ Prev Chapter</button>
-                <button class="nav-btn" onclick="closeReader()" style="padding:10px 20px;">✕ Chapter List</button>
-                <button class="nav-btn" id="nextBtnBottom" onclick="navigateChapter(1)" style="padding:10px 20px;">Next Chapter ›</button>
+                <button class="nav-btn" id="prevBtnBottom" onclick="navigateChapter(-1)" style="padding:10px 24px;">‹ Prev Chapter</button>
+                <a href="https://aixcard.github.io/Manga/" class="nav-btn" style="text-decoration:none;padding:10px 24px;">⌂ Kuro Manga</a>
+                <button class="nav-btn" id="nextBtnBottom" onclick="navigateChapter(1)" style="padding:10px 24px;">Next Chapter ›</button>
             </div>
         </div>
     </div>
@@ -875,11 +874,6 @@
             });
 
             window.scrollTo({ top: 0, behavior: 'instant' });
-        }
-
-        function closeReader() {
-            document.body.classList.remove('reading-active');
-            history.pushState("", document.title, window.location.pathname + window.location.search);
         }
 
         function navigateChapter(delta) {
