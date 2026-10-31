@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solo Leveling — Chapter Reader</title>
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --surface-color: #12141a;
+            --surface-border: #1f2430;
+            --accent-color: #6366f1;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Top Sticky Navbar */
+        .reader-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(18, 20, 26, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--surface-border);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand-title {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-badge {
+            background: var(--accent-color);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        select {
+            background: #1e222d;
+            color: #fff;
+            border: 1px solid #334155;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            max-width: 200px;
+        }
+
+        button {
+            background: #1e222d;
+            color: #fff;
+            border: 1px solid #334155;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        button:hover:not(:disabled) {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        button:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        /* Reading Area */
+        .page-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 10px 80px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chapter-header {
+            width: 100%;
+            text-align: center;
+            padding: 24px 0 16px 0;
+        }
+
+        .chapter-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+        }
+
+        .chapter-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .manga-page {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            display: block;
+            margin: 0;
+            background: #0e1015;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .bottom-nav {
+            margin-top: 32px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .bottom-nav button {
+            padding: 12px 24px;
+            font-size: 1rem;
+        }
+
+        .loading-spinner {
+            padding: 60px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="reader-navbar">
+        <div class="brand-title">
+            <span>Solo Leveling</span>
+            <span class="brand-badge">201 Ch</span>
+        </div>
+        <div class="controls">
+            <button id="prevBtn" onclick="navigateChapter(-1)">‹ Prev</button>
+            <select id="chapterSelect" onchange="onChapterSelect(this.value)"></select>
+            <button id="nextBtn" onclick="navigateChapter(1)">Next ›</button>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <div class="chapter-header">
+            <h1 id="chapterTitle">Loading Chapter...</h1>
+            <p id="pageCountText"></p>
+        </div>
+        <div id="pagesList">
+            <div class="loading-spinner">Loading chapter pages...</div>
+        </div>
+        <div class="bottom-nav">
+            <button id="prevBtnBottom" onclick="navigateChapter(-1)">‹ Prev Chapter</button>
+            <button id="nextBtnBottom" onclick="navigateChapter(1)">Next Chapter ›</button>
+        </div>
+    </main>
+
+    <script>
+        let manifest = null;
+        let currentChapterIndex = 0;
+
+        async function init() {
+            try {
+                const res = await fetch('manifest.json');
+                manifest = await res.json();
+                
+                const select = document.getElementById('chapterSelect');
+                select.innerHTML = '';
+                
+                manifest.chapters.forEach((ch, idx) => {
+                    const opt = document.createElement('option');
+                    opt.value = idx;
+                    opt.textContent = ch.title;
+                    select.appendChild(opt);
+                });
+
+                // Check URL hash for direct chapter selection (#ch-10)
+                const hash = window.location.hash;
+                if (hash && hash.startsWith('#ch-')) {
+                    const chNum = parseFloat(hash.replace('#ch-', ''));
+                    const foundIdx = manifest.chapters.findIndex(c => c.number === chNum);
+                    if (foundIdx !== -1) currentChapterIndex = foundIdx;
+                }
+
+                loadChapter(currentChapterIndex);
+            } catch (err) {
+                document.getElementById('pagesList').innerHTML = 
+                    `<div style="color:#ef4444;text-align:center;padding:40px;">Failed to load manifest: ${err.message}</div>`;
+            }
+        }
+
+        function loadChapter(index) {
+            if (!manifest || index < 0 || index >= manifest.chapters.length) return;
+            currentChapterIndex = index;
+            const ch = manifest.chapters[index];
+
+            document.getElementById('chapterSelect').value = index;
+            document.getElementById('chapterTitle').textContent = ch.title;
+            document.getElementById('pageCountText').textContent = `${ch.pageCount} Pages • Sequential Manhwa Strip`;
+            window.location.hash = `ch-${ch.number}`;
+
+            // Buttons state
+            document.getElementById('prevBtn').disabled = index <= 0;
+            document.getElementById('prevBtnBottom').disabled = index <= 0;
+            document.getElementById('nextBtn').disabled = index >= manifest.chapters.length - 1;
+            document.getElementById('nextBtnBottom').disabled = index >= manifest.chapters.length - 1;
+
+            const list = document.getElementById('pagesList');
+            list.innerHTML = '';
+
+            // Render all chapter pages in order
+            ch.pages.forEach((url, i) => {
+                const img = document.createElement('img');
+                img.className = 'manga-page';
+                img.loading = i < 3 ? 'eager' : 'lazy';
+                img.alt = `${ch.title} - Page ${i + 1}`;
+                img.src = url;
+                
+                // Fallback proxy in case of direct referrer restrictions
+                img.onerror = () => {
+                    if (!img.dataset.retried) {
+                        img.dataset.retried = 'true';
+                        img.src = `https://wsrv.nl/?url=${encodeURIComponent(url)}`;
+                    }
+                };
+
+                list.appendChild(img);
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function onChapterSelect(val) {
+            loadChapter(parseInt(val, 10));
+        }
+
+        function navigateChapter(delta) {
+            loadChapter(currentChapterIndex + delta);
+        }
+
+        init();
+    </script>
+</body>
+</html>
