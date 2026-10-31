@@ -315,6 +315,45 @@
             cursor: not-allowed;
         }
 
+        /* Chapter Reader Title Banner */
+        .chapter-title-card {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(18, 20, 28, 0.95));
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px 28px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .chapter-title-badge {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.25);
+            border: 1px solid rgba(79, 70, 229, 0.4);
+            color: #a5b4fc;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+        }
+
+        .chapter-title-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .chapter-title-meta {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
         .pages-wrap {
             max-width: 800px;
             margin: 0 auto;
@@ -359,7 +398,7 @@
         <main class="series-container">
             <section class="series-hero">
                 <img 
-                    src="https://hot.planeptune.us/manga/Solo-Leveling/0001-001.png" 
+                    src="cover.jpg" 
                     alt="Solo Leveling Cover" 
                     class="series-cover"
                 >
@@ -503,7 +542,13 @@
             document.getElementById('nextBtnBottom').disabled = index >= manifest.chapters.length - 1;
 
             const list = document.getElementById('pagesList');
-            list.innerHTML = '';
+            list.innerHTML = `
+                <div class="chapter-title-card">
+                    <span class="chapter-title-badge">Solo Leveling</span>
+                    <h2 class="chapter-title-name">${ch.title}</h2>
+                    <div class="chapter-title-meta">${ch.pageCount} Pages • Official High-Res Scan</div>
+                </div>
+            `;
 
             ch.pages.forEach((url, i) => {
                 const img = document.createElement('img');
