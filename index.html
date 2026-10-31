@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solo Leveling — All Chapters (1 - 200)</title>
+    <title>Solo Leveling — KURO MANGA</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236366f1'/%3E%3Cpath d='M20 16L32 28L44 16V48L32 36L20 48Z' fill='%23ffffff'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #090a0f;
-            --bg-surface: #12141c;
-            --bg-card: #181b26;
-            --border-color: #242938;
-            --accent: #4f46e5;
-            --accent-glow: rgba(79, 70, 229, 0.35);
+            --bg-base: #08090d;
+            --bg-surface: #10121a;
+            --bg-card: #151824;
+            --border: #1e2230;
+            --border-hover: #3730a3;
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.35);
+            --gold: #f59e0b;
+            --gold-glow: rgba(245, 158, 11, 0.35);
+            --green: #22c55e;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
         }
@@ -30,432 +35,629 @@
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Top Header */
+        /* Header Navigation */
         .site-header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(9, 10, 15, 0.9);
+            background: rgba(8, 9, 13, 0.9);
             backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 14px 24px;
+            border-bottom: 1px solid var(--border);
+            padding: 14px 28px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .header-brand {
+        .brand-link {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
             color: #fff;
-            cursor: pointer;
         }
 
-        .header-brand-title {
+        .brand-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #6366f1, #4338ca);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .brand-logo-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
+
+        .brand-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.6rem;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, #fff 40%, #94a3b8);
+            font-size: 1.7rem;
+            letter-spacing: 1.5px;
+            background: linear-gradient(135deg, #fff 50%, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .header-badge {
-            background: var(--accent);
+        .back-portal-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: #cbd5e1;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .back-portal-btn:hover {
+            background: rgba(99, 102, 241, 0.18);
+            border-color: var(--accent);
             color: #fff;
+            transform: translateX(-2px);
+        }
+
+        .back-portal-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Hero Spotlight */
+        .hero-section {
+            max-width: 1100px;
+            margin: 36px auto 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(16, 18, 26, 0.95));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px;
+            display: flex;
+            gap: 36px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            align-items: flex-start;
+        }
+
+        .hero-cover-wrap {
+            width: 220px;
+            min-width: 220px;
+            aspect-ratio: 2/3;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--border);
+            background: #0d0f15;
+        }
+
+        .hero-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-details {
+            flex: 1;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .badge-status {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 4px 10px;
+            border-radius: 6px;
             font-size: 0.75rem;
             font-weight: 700;
-            padding: 3px 8px;
+        }
+
+        .badge-chapters {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 4px 10px;
             border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
         }
 
-        /* Hero / Series Overview */
-        .series-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px 80px 20px;
-        }
-
-        .series-hero {
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            gap: 36px;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 32px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            margin-bottom: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .series-hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 24px;
-                padding: 24px;
-            }
-            .series-cover {
-                margin: 0 auto;
-                max-width: 200px;
-            }
-        }
-
-        .series-cover {
-            width: 100%;
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            aspect-ratio: 2/3;
-            object-fit: cover;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .series-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .series-title {
-            font-size: 2.2rem;
+        .badge-completed-you {
+            background: rgba(245, 158, 11, 0.18);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             font-weight: 800;
-            margin-bottom: 6px;
-            line-height: 1.2;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 0 12px var(--gold-glow);
         }
 
-        .series-sub {
+        .hero-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 4px;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-jp-title {
             color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .hero-author {
+            color: #cbd5e1;
             font-size: 0.95rem;
             margin-bottom: 16px;
         }
 
-        .series-tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 18px;
-        }
-
-        .series-tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            color: #cbd5e1;
-        }
-
-        .series-desc {
-            color: #cbd5e1;
+        .hero-synopsis {
+            color: #94a3b8;
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 24px;
         }
 
-        .series-actions {
+        .progress-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
             display: flex;
-            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+
+        .progress-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-small {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: #94a3b8;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-small:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
         .btn-primary {
             background: var(--accent);
             color: #fff;
-            border: none;
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 10px;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 0.95rem;
+            border: none;
             cursor: pointer;
+            box-shadow: 0 4px 16px var(--accent-glow);
             transition: all 0.2s ease;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
 
         .btn-primary:hover {
-            background: #4338ca;
+            background: #4f46e5;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px var(--accent-glow);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
             color: #fff;
-            border: 1px solid var(--border-color);
             padding: 12px 24px;
             border-radius: 10px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Chapter List Section */
-        .chapter-section-header {
+        /* Chapters Section */
+        .chapters-wrap {
+            max-width: 1100px;
+            margin: 36px auto;
+            padding: 0 24px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .chapters-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 20px;
+            gap: 16px;
             flex-wrap: wrap;
-            gap: 12px;
         }
 
-        .chapter-section-title {
+        .chapters-title {
             font-size: 1.4rem;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .search-box {
             background: var(--bg-surface);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
             color: #fff;
-            padding: 8px 14px;
+            padding: 10px 16px;
             border-radius: 8px;
-            outline: none;
             font-size: 0.9rem;
-            width: 220px;
+            outline: none;
+            width: 260px;
+            transition: border-color 0.2s;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent);
         }
 
         .chapter-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 12px;
         }
 
         .chapter-card {
             background: var(--bg-surface);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 14px 16px;
-            text-decoration: none;
-            color: var(--text-main);
+            padding: 12px 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.2s ease;
+            text-decoration: none;
+            color: #cbd5e1;
+            font-size: 0.88rem;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.15s ease;
         }
 
         .chapter-card:hover {
-            border-color: var(--accent);
             background: var(--bg-card);
+            border-color: var(--accent);
+            color: #fff;
             transform: translateY(-2px);
         }
 
-        .chapter-card-name {
-            font-weight: 600;
-            font-size: 0.95rem;
+        .chapter-card.is-read {
+            border-color: rgba(99, 102, 241, 0.35);
+            background: rgba(99, 102, 241, 0.06);
+            color: #94a3b8;
+        }
+
+        .chapter-card.is-read .chapter-card-name::before {
+            content: '✓ ';
+            color: #4ade80;
+            font-weight: 800;
         }
 
         .chapter-card-pages {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
-        /* Reader Overlay Mode */
-        #readerView {
+        /* Reader View Overlay */
+        .reader-view {
             display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--bg-base);
+            z-index: 1000;
+            overflow-y: auto;
+            flex-direction: column;
+            align-items: center;
         }
 
-        body.reading-active #homeView {
-            display: none;
+        body.reading-active {
+            overflow: hidden;
         }
 
-        body.reading-active #readerView {
-            display: block;
+        body.reading-active .reader-view {
+            display: flex;
         }
 
-        .reader-bar {
+        .reader-header {
             position: sticky;
             top: 0;
-            z-index: 100;
-            background: rgba(9, 10, 15, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 12px 20px;
+            z-index: 200;
+            width: 100%;
+            background: rgba(8, 9, 13, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 16px;
         }
 
-        .reader-controls {
+        .reader-left {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 14px;
         }
 
-        select, .nav-btn {
-            background: #181b26;
+        .reader-title {
+            font-size: 0.95rem;
+            font-weight: 700;
             color: #fff;
-            border: 1px solid var(--border-color);
-            padding: 7px 12px;
-            border-radius: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 320px;
+        }
+
+        .reader-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            color: #cbd5e1;
+            padding: 8px 14px;
+            border-radius: 8px;
             font-size: 0.85rem;
+            font-weight: 700;
             cursor: pointer;
-            outline: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .nav-btn:hover:not(:disabled) {
-            background: var(--accent);
+            background: rgba(99, 102, 241, 0.2);
             border-color: var(--accent);
+            color: #fff;
         }
 
         .nav-btn:disabled {
-            opacity: 0.3;
+            opacity: 0.4;
             cursor: not-allowed;
         }
 
-        /* Chapter Reader Title Banner */
+        .chapter-select {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            max-width: 220px;
+        }
+
+        .pages-container {
+            width: 100%;
+            max-width: 820px;
+            padding: 24px 16px 80px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .chapter-title-card {
             width: 100%;
-            max-width: 800px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(16, 18, 26, 0.95));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(18, 20, 28, 0.95));
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 24px 28px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .chapter-title-badge {
-            display: inline-block;
-            background: rgba(79, 70, 229, 0.25);
-            border: 1px solid rgba(79, 70, 229, 0.4);
-            color: #a5b4fc;
             font-size: 0.75rem;
+            color: var(--accent);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 4px 12px;
-            border-radius: 999px;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
+            display: inline-block;
         }
 
         .chapter-title-name {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 900;
             margin-bottom: 6px;
         }
 
         .chapter-title-meta {
-            color: var(--text-muted);
             font-size: 0.85rem;
-        }
-
-        .pages-wrap {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px 0 80px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            color: var(--text-muted);
         }
 
         .manga-page {
             width: 100%;
             height: auto;
             display: block;
-            margin: 0;
-            background: #090a0f;
+            margin: 0 auto;
+            background: #0d0f15;
+            min-height: 400px;
+            border-bottom: 1px solid #141722;
         }
 
-        .reader-bottom-nav {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 14px;
+        .bottom-nav-wrap {
             width: 100%;
+            max-width: 820px;
+            padding: 32px 0 60px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 24px;
+            }
+            .hero-cover-wrap {
+                width: 180px;
+                min-width: 180px;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .reader-title {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Site Header -->
+    <!-- Header Navigation -->
     <header class="site-header">
-        <div class="header-brand" onclick="closeReader()">
-            <span class="header-brand-title">SOLO LEVELING</span>
-            <span class="header-badge">200 Chapters</span>
-        </div>
-        <div id="headerReaderActions" style="display: none;">
-            <button class="nav-btn" onclick="closeReader()">✕ Close Reader</button>
-        </div>
+        <a href="https://aixcard.github.io/Manga/" class="brand-link">
+            <div class="brand-logo-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 2H5c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1z"/></svg>
+            </div>
+            <span class="brand-title">KURO MANGA</span>
+        </a>
+        <a href="https://aixcard.github.io/Manga/" class="back-portal-btn">
+            <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            <span>Back to Kuro Manga</span>
+        </a>
     </header>
 
-    <!-- VIEW 1: Main Series Overview Page -->
-    <div id="homeView">
-        <main class="series-container">
-            <section class="series-hero">
-                <img src="cover.jpg" alt="Solo Leveling Cover" class="series-cover"
-                >
-                <div class="series-info">
-                    <h1 class="series-title">Solo Leveling</h1>
-                    <div class="series-sub">나 혼자만 레벨업 • By Chugong & DUBU (REDICE Studio)</div>
-                    <div class="series-tags">
-                        <span class="series-tag">Action</span>
-                        <span class="series-tag">Fantasy</span>
-                        <span class="series-tag">Supernatural</span>
-                        <span class="series-tag">Completed</span>
-                        <span class="series-tag">200 Chapters</span>
-                    </div>
-                    <p class="series-desc">
-                        10 years ago, after the 'Gate' that connected the real world with the monster world opened, some ordinary people received the power to hunt monsters within the Gate. They are known as 'Hunters'. Sung Jin-woo, an E-rank Hunter known as the 'Weakest Hunter of All Mankind', embarks on a journey to become the world's greatest Hunter.
-                    </p>
-                    <div class="series-actions">
-                        <button class="btn-primary" onclick="openChapter(0)">▶ Read Chapter 1</button>
-                        <button class="btn-secondary" id="readLatestBtn" onclick="readLatestChapter()">Read Latest</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Chapter Selection Grid -->
-            <section>
-                <div class="chapter-section-header">
-                    <h2 class="chapter-section-title">All Chapters (1 - 200)</h2>
-                    <input 
-                        type="text" 
-                        class="search-box" 
-                        id="searchChapterInput" 
-                        placeholder="Search chapter #..." 
-                        oninput="filterChapters(this.value)"
-                    >
-                </div>
-                <div class="chapter-grid" id="chapterGrid">
-                    <!-- Populated dynamically by script -->
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- VIEW 2: Reader View -->
-    <div id="readerView">
-        <div class="reader-bar">
-            <div style="display:flex; align-items:center; gap:10px;">
-                <button class="nav-btn" onclick="closeReader()">← Series</button>
-                <span id="readerTitle" style="font-weight:700; font-size:0.95rem;"></span>
+    <!-- Hero Spotlight -->
+    <section class="hero-section">
+        <div class="hero-card">
+            <div class="hero-cover-wrap">
+                <img src="cover.jpg" alt="Solo Leveling" class="hero-cover">
             </div>
-            <div class="reader-controls">
+            <div class="hero-details">
+                <div class="hero-badges" id="heroBadges">
+                    <span class="badge-status">Completed</span>
+                    <span class="badge-chapters">200 Chapters</span>
+                </div>
+                <h1 class="hero-title">Solo Leveling</h1>
+                <div class="hero-jp-title">나 혼자만 레벨업 (Only I Level Up)</div>
+                <div class="hero-author">Story & Art by <strong>Chugong & DUBU (REDICE Studio)</strong></div>
+                <p class="hero-synopsis">10 years ago, after the 'Gate' connected the real world with the monster world, ordinary people received hunter abilities. Sung Jin-woo, an E-rank Hunter known as the 'Weakest Hunter of All Mankind', embarks on a journey to become the world's greatest Hunter.</p>
+
+                <div class="progress-box">
+                    <div class="progress-text" id="progressSummary">Loading your reading progress...</div>
+                    <div class="progress-actions">
+                        <button class="btn-small" onclick="markAllCompleted()">Mark All Read</button>
+                        <button class="btn-small" onclick="resetProgress()">Reset</button>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <button class="btn-primary" onclick="openChapter(0)">Read First (Ch 1) →</button>
+                    <button class="btn-secondary" id="readLatestBtn" onclick="readLatestChapter()">Read Latest</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapters Section -->
+    <main class="chapters-wrap">
+        <div class="chapters-header">
+            <h2 class="chapters-title">All Chapters</h2>
+            <input type="text" class="search-box" id="chapterSearch" placeholder="Filter chapter number..." oninput="filterChapters(this.value)">
+        </div>
+        <div class="chapter-grid" id="chapterGrid">
+            <!-- Dynamically populated -->
+        </div>
+    </main>
+
+    <!-- Fullscreen Chapter Reader -->
+    <div class="reader-view" id="readerView">
+        <div class="reader-header">
+            <div class="reader-left">
+                <a href="https://aixcard.github.io/Manga/" class="nav-btn" style="text-decoration:none;" title="Portal Home">⌂ Kuro Manga</a>
+                <button class="nav-btn" onclick="closeReader()" title="Back to Overview">✕ Overview</button>
+                <div class="reader-title" id="readerTitle">Solo Leveling</div>
+            </div>
+            <div class="reader-nav">
                 <button class="nav-btn" id="prevBtn" onclick="navigateChapter(-1)">‹ Prev</button>
-                <select id="chapterSelect" onchange="openChapter(parseInt(this.value, 10))"></select>
+                <select class="chapter-select" id="chapterSelect" onchange="openChapter(parseInt(this.value))"></select>
                 <button class="nav-btn" id="nextBtn" onclick="navigateChapter(1)">Next ›</button>
             </div>
         </div>
 
-        <div class="pages-wrap">
+        <div class="pages-container">
             <div id="pagesList"></div>
-            <div class="reader-bottom-nav">
+            <div class="bottom-nav-wrap">
                 <button class="nav-btn" id="prevBtnBottom" onclick="navigateChapter(-1)" style="padding:10px 20px;">‹ Prev Chapter</button>
+                <button class="nav-btn" onclick="closeReader()" style="padding:10px 20px;">✕ Chapter List</button>
                 <button class="nav-btn" id="nextBtnBottom" onclick="navigateChapter(1)" style="padding:10px 20px;">Next Chapter ›</button>
             </div>
         </div>
@@ -472,28 +674,135 @@
                 renderChapterGrid(manifest.chapters);
                 populateDropdown(manifest.chapters);
                 updateLatestButton();
+                updateProgressUI();
 
-                // Handle direct URL hash like #ch-25
                 const hash = window.location.hash;
                 if (hash && hash.startsWith('#ch-')) {
                     const chNum = parseFloat(hash.replace('#ch-', ''));
                     const foundIdx = manifest.chapters.findIndex(c => c.number === chNum);
-                    if (foundIdx !== -1) {
-                        openChapter(foundIdx);
-                    }
+                    if (foundIdx !== -1) openChapter(foundIdx);
                 }
             } catch (err) {
                 console.error('Failed to load manifest:', err);
             }
         }
 
+        function getStorageKey() {
+            return `kuro_read_${manifest.mangaId}`;
+        }
+
+        function getReadSet() {
+            try {
+                return new Set(JSON.parse(localStorage.getItem(getStorageKey()) || '[]'));
+            } catch (e) {
+                return new Set();
+            }
+        }
+
+        function saveReadSet(readSet) {
+            try {
+                localStorage.setItem(getStorageKey(), JSON.stringify([...readSet]));
+                updateProgressUI();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function markChapterRead(chNum) {
+            const readSet = getReadSet();
+            readSet.add(chNum);
+            saveReadSet(readSet);
+        }
+
+        function markAllCompleted() {
+            if (!manifest || !manifest.chapters) return;
+            const readSet = new Set();
+            manifest.chapters.forEach(ch => readSet.add(ch.number));
+            saveReadSet(readSet);
+        }
+
+        function resetProgress() {
+            if (!manifest) return;
+            localStorage.removeItem(getStorageKey());
+            localStorage.removeItem(`kuro_completed_${manifest.mangaId}`);
+            updateProgressUI();
+        }
+
+        function updateProgressUI() {
+            if (!manifest || !manifest.chapters) return;
+            const readSet = getReadSet();
+            // Core chapters: exclude .5 and other decimal installments
+            const coreChapters = manifest.chapters.filter(ch => ch.number % 1 === 0 && ch.number > 0);
+            const coreTotal = coreChapters.length;
+            const coreReadCount = coreChapters.filter(ch => readSet.has(ch.number)).length;
+            const isCompleted = coreTotal > 0 && coreReadCount >= coreTotal;
+
+            if (isCompleted) {
+                localStorage.setItem(`kuro_completed_${manifest.mangaId}`, 'true');
+            } else {
+                localStorage.removeItem(`kuro_completed_${manifest.mangaId}`);
+            }
+
+            // Badges
+            const badgesWrap = document.getElementById('heroBadges');
+            const existingYouBadge = document.getElementById('completedYouBadge');
+            if (isCompleted) {
+                if (!existingYouBadge) {
+                    const b = document.createElement('span');
+                    b.id = 'completedYouBadge';
+                    b.className = 'badge-completed-you';
+                    b.innerHTML = '★ Completed by You';
+                    badgesWrap.appendChild(b);
+                }
+            } else if (existingYouBadge) {
+                existingYouBadge.remove();
+            }
+
+            // Progress text
+            const summary = document.getElementById('progressSummary');
+            if (summary) {
+                const pct = coreTotal > 0 ? Math.round((coreReadCount / coreTotal) * 100) : 0;
+                if (isCompleted) {
+                    summary.innerHTML = `<span style="color:#fbbf24;font-weight:700;">✓ You have completed this manga! (${coreReadCount}/${coreTotal} Chapters Read • 100%)</span>`;
+                } else if (coreReadCount > 0) {
+                    summary.innerHTML = `Your Progress: <strong style="color:#6366f1;">${coreReadCount}/${coreTotal}</strong> Chapters Read (${pct}%)`;
+                } else {
+                    summary.innerHTML = `Your Progress: <strong>0/${coreTotal}</strong> Chapters Read (Not Started)`;
+                }
+            }
+
+            // Grid card checkmarks
+            document.querySelectorAll('.chapter-card').forEach(card => {
+                const chNum = parseFloat(card.dataset.num);
+                if (readSet.has(chNum)) {
+                    card.classList.add('is-read');
+                } else {
+                    card.classList.remove('is-read');
+                }
+            });
+        }
+
+        function updateLatestButton() {
+            if (!manifest || !manifest.chapters.length) return;
+            const lastCh = manifest.chapters[manifest.chapters.length - 1];
+            const btn = document.getElementById('readLatestBtn');
+            if (btn) btn.textContent = `Read Latest (${lastCh.title})`;
+        }
+
+        function readLatestChapter() {
+            if (!manifest || !manifest.chapters.length) return;
+            openChapter(manifest.chapters.length - 1);
+        }
+
         function renderChapterGrid(chapters) {
             const grid = document.getElementById('chapterGrid');
             grid.innerHTML = '';
+            const readSet = getReadSet();
             chapters.forEach((ch) => {
                 const realIdx = manifest.chapters.findIndex(c => c.number === ch.number);
                 const a = document.createElement('div');
-                a.className = 'chapter-card';
+                a.className = 'chapter-card' + (readSet.has(ch.number) ? ' is-read' : '');
+                a.dataset.num = ch.number;
                 a.onclick = () => openChapter(realIdx);
                 a.innerHTML = `
                     <span class="chapter-card-name">${ch.title}</span>
@@ -528,8 +837,10 @@
             currentChapterIndex = index;
             const ch = manifest.chapters[index];
 
+            // Mark this chapter as read
+            markChapterRead(ch.number);
+
             document.body.classList.add('reading-active');
-            document.getElementById('headerReaderActions').style.display = 'block';
             document.getElementById('chapterSelect').value = index;
             document.getElementById('readerTitle').textContent = ch.title;
             window.location.hash = `ch-${ch.number}`;
@@ -568,7 +879,6 @@
 
         function closeReader() {
             document.body.classList.remove('reading-active');
-            document.getElementById('headerReaderActions').style.display = 'none';
             history.pushState("", document.title, window.location.pathname + window.location.search);
         }
 
@@ -576,21 +886,6 @@
             openChapter(currentChapterIndex + delta);
         }
 
-        
-        function updateLatestButton() {
-            if (!manifest || !manifest.chapters.length) return;
-            const lastCh = manifest.chapters[manifest.chapters.length - 1];
-            const btn = document.getElementById('readLatestBtn');
-            if (btn) {
-                btn.textContent = `Read Latest (${lastCh.title})`;
-            }
-        }
-
-        function readLatestChapter() {
-            if (!manifest || !manifest.chapters.length) return;
-            openChapter(manifest.chapters.length - 1);
-        }
-    
         init();
     </script>
 </body>
