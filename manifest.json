@@ -4,31 +4,10 @@
   "japaneseTitle": "\ub098 \ud63c\uc790\ub9cc \ub808\ubca8\uc5c5 (Na Honjaman Level-Up)",
   "author": "Chugong / DUBU (REDICE Studio)",
   "status": "Completed",
-  "totalChapters": 201,
-  "totalPages": 7215,
+  "totalChapters": 200,
+  "totalPages": 7203,
   "repository": "AIxcard/solo-leveling",
   "chapters": [
-    {
-      "id": "sl-ch-000",
-      "number": 0,
-      "title": "Chapter 0",
-      "chapterId": "01J76XYXYZGGRVGEGATYQWFTD8",
-      "pageCount": 12,
-      "pages": [
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-001.png",
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-002.png",
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-003.png",
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-004.png",
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-005.png",
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-006.png",
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-007.png",
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-008.png",
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-009.png",
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-010.png",
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-011.png",
-        "https://hot.planeptune.us/manga/Solo-Leveling/0000-012.png"
-      ]
-    },
     {
       "id": "sl-ch-001",
       "number": 1,
